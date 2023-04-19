@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>get请求</button>
+    <form>
+        <input type="text" class="text">
+        <button class="post">post请求</button>
+
+    </form>
+    <button>ajax请求</button>
+    
+    <script src="./lib/jquery.js"></script>
+    <script>
+        $(function(){
+            $("button").first().on("click",function(){
+                $.get('http://liulongbin.top:3006/api/getbooks',function(res){
+                console.log(res);
+                })
+            })
+
+             $("button").eq(1).on("click",function(e){
+                e.preventDefault()
+                $.post('http://liulongbin.top:3006/api/addbook',{bookname:$(".text").val(),author:"我不知道",publisher:"我也不知道"},function(e){
+                    console.log(e)
+                })
+            })
+
+            $("button").eq(2).on("click",function(){
+                $.ajax({
+                    type:'get',
+                    url:'http://liulongbin.top:3006/api/getbooks',
+                    data:{id:2},
+                    success:function(res){
+                        console.log(res);
+                    }
+                })
+            })
+            
+        })
+
+       
+        
+    </script>
+</body>
+</html>
